@@ -1,3 +1,4 @@
+import java.util.ArrayList;
 import java.util.Hashtable;
 import java.util.List;
 
@@ -9,7 +10,11 @@ public class RentalService {
     }
 
     public List<Rental> getRentals(Customer customer) {
-        return rentals.get(customer);
+    	List<Rental> ret = rentals.get(customer);
+    	if (ret == null) {
+    		return new ArrayList<Rental>();
+    	}
+    	return ret;
     }
 
     public void setRentals(Customer customer, List<Rental> rentalList) {
@@ -17,10 +22,14 @@ public class RentalService {
     }
 
     public void addRental(Customer customer, Rental rental) {
+        if (rentals.contains(customer) == false) {
+        	setRentals(customer, new ArrayList<Rental>());
+        }
         rentals.get(customer).add(rental);
     }
 
     public void clearRentals(Customer customer) {
-        rentals.remove(customer);
+    	List<Rental> ret = rentals.get(customer);
+    	ret.clear();
     }
 }

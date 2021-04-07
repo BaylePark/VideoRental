@@ -90,7 +90,6 @@ public class Controller {
             List<Rental> rentals = rentalService.getRentals(customer);
             System.out.println("Name: " + customer.getName() + "\tRentals: " + rentals.size());
             for (Rental rental : rentals) {
-                
                 System.out.print("\tTitle: " + rental.getVideo().getTitle() + " ");
                 System.out.print("\tPrice Code: " + rental.getVideo().getPriceCode());
             }
