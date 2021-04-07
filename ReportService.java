@@ -2,7 +2,10 @@ import java.util.Date;
 import java.util.List;
 
 public class ReportService {
-    public ReportService() {
+    CouponPolicy couponPolicy;
+
+    public ReportService(CouponPolicy couponPolicy) {
+        this.couponPolicy = couponPolicy;
     }
 
     public String getReport(Customer customer, List<Rental> rentals) {
@@ -42,12 +45,8 @@ public class ReportService {
 
         result += "Total charge: " + totalCharge + "\tTotal Point:" + totalPoint + "\n";
 
-        if (totalPoint >= 10) {
-            System.out.println("Congrat! You earned one free coupon");
-        }
-        if (totalPoint >= 30) {
-            System.out.println("Congrat! You earned two free coupon");
-        }
+        couponPolicy.print(totalPoint);
+
         return result;
     }
 }

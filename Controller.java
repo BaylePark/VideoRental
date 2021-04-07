@@ -7,7 +7,7 @@ public class Controller {
     private List<Video> videos = new ArrayList<Video>();
 
     private RentalService rentalService = new RentalService();
-    private ReportService report = new ReportService();
+    private ReportService report = new ReportService(new DefaultCouponPolicy());
 
     public Controller() {
 
@@ -90,6 +90,7 @@ public class Controller {
             List<Rental> rentals = rentalService.getRentals(customer);
             System.out.println("Name: " + customer.getName() + "\tRentals: " + rentals.size());
             for (Rental rental : rentals) {
+                
                 System.out.print("\tTitle: " + rental.getVideo().getTitle() + " ");
                 System.out.print("\tPrice Code: " + rental.getVideo().getPriceCode());
             }
