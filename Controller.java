@@ -7,6 +7,7 @@ public class Controller {
     private List<Video> videos = new ArrayList<Video>();
 
     private RentalService rentalService = new RentalService();
+    private ReportService report = new ReportService();
 
     public Controller() {
 
@@ -101,7 +102,7 @@ public class Controller {
         if (foundCustomer == null) {
             System.out.println("No customer found"); // FIXME: change to exceiption
         } else {
-            String result = foundCustomer.getReport();
+            String result = report.getReport(foundCustomer, rentalService.getRentals(foundCustomer));
             System.out.println(result);
         }
     }

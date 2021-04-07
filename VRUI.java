@@ -1,6 +1,3 @@
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
 import java.util.Scanner;
 
 public class VRUI {
@@ -69,7 +66,6 @@ public class VRUI {
 			case 8:
 				System.out.println("Enter customer name: ");
 				String name2 = scanner.next();
-
 				controller.clearRentals(name2);
 				break;
 			case -1:

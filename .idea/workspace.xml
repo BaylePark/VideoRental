@@ -3,9 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="1ae7738d-efd4-434b-a828-fdc0e483df18" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Controller.java" beforeDir="false" afterPath="$PROJECT_DIR$/Controller.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/VRUI.java" beforeDir="false" afterPath="$PROJECT_DIR$/VRUI.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/RentalService.java" beforeDir="false" afterPath="$PROJECT_DIR$/RentalService.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -32,15 +30,13 @@
     <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
   </component>
   <component name="RunManager">
-    <configuration default="true" type="ArquillianTestNG" factoryName="" nameIsGenerated="true">
+    <configuration default="true" type="ArquillianJUnit" factoryName="" nameIsGenerated="true">
       <option name="arquillianRunConfiguration">
         <value>
           <option name="containerStateName" value="" />
         </value>
       </option>
-      <option name="TEST_OBJECT" value="CLASS" />
-      <properties />
-      <listeners />
+      <option name="TEST_OBJECT" value="class" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -58,6 +54,7 @@
       <workItem from="1617769532157" duration="223000" />
       <workItem from="1617769776780" duration="342000" />
       <workItem from="1617770137225" duration="283000" />
+      <workItem from="1617771517209" duration="18000" />
     </task>
     <servers />
   </component>
