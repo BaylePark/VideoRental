@@ -67,8 +67,8 @@ public class Controller {
         customers.add(james);
         customers.add(brown);
 
-        Video v1 = new Video("v1", Video.CD, Video.REGULAR, new Date());
-        Video v2 = new Video("v2", Video.DVD, Video.NEW_RELEASE, new Date());
+        Video v1 = new CDVideo("v1", Video.REGULAR, new Date());
+        Video v2 = new DVDVideo("v2", Video.NEW_RELEASE, new Date());
         videos.add(v1);
         videos.add(v2);
 
@@ -137,8 +137,25 @@ public class Controller {
     }
 
     public void registerVideo(String title, int videoType, int priceCode) {
+        final int VHS = 1;
+        final int CD = 2;
+        final int DVD = 3;
+
         Date registeredDate = new Date();
-        Video video = new Video(title, videoType, priceCode, registeredDate);
+        Video video = null;
+
+        switch (videoType) {
+        case VHS:
+            video = new VHSVideo(title, priceCode, registeredDate);
+            break;
+        case CD:
+            video = new CDVideo(title, priceCode, registeredDate);
+            break;
+        case DVD:
+            video = new DVDVideo(title, priceCode, registeredDate);
+            break;
+        }
+
         videos.add(video);
     }
 
