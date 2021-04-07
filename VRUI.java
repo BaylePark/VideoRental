@@ -54,23 +54,23 @@ public class VRUI {
 				break;
 			case 6:
 				System.out.println("Enter customer name: ");
-				String customerName = scanner.next();
+				String customerName2 = scanner.next();
 
 				System.out.println("Enter video title to return: ");
-				String videoTitle = scanner.next();
+				String videoTitle2 = scanner.next();
 
-				controller.returnVideo(customerName, videoTitle);
+				controller.returnVideo(customerName2, videoTitle2);
 				break;
 			case 7:
 				System.out.println("Enter customer name: ");
-				String customerName = scanner.next();
-				controller.getCustomerReport(customerName);
+				String customerName3 = scanner.next();
+				controller.getCustomerReport(customerName3);
 				break;
 			case 8:
 				System.out.println("Enter customer name: ");
-				String name = scanner.next();
+				String name2 = scanner.next();
 
-				controller.clearRentals(name);
+				controller.clearRentals(name2);
 				break;
 			case -1:
 				controller.init();

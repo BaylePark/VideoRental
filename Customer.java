@@ -5,8 +5,6 @@ import java.util.List;
 public class Customer {
 	private String name;
 
-	private List<Rental> rentals = new ArrayList<Rental>();
-
 	public Customer(String name) {
 		this.setName(name);
 	}
@@ -19,19 +17,6 @@ public class Customer {
 		this.name = name;
 	}
 
-	public List<Rental> getRentals() {
-		return rentals;
-	}
-
-	public void setRentals(List<Rental> rentals) {
-		this.rentals = rentals;
-	}
-
-	public void addRental(Rental rental) {
-		rentals.add(rental);
-
-	}
-
 	public String getReport() {
 		String result = "Customer Report for " + getName() + "\n";
 
@@ -42,7 +27,7 @@ public class Customer {
 
 		for (Rental each : rentals) {
 			double eachCharge = 0;
-			int eachPoint = 0 ;
+			int eachPoint = 0;
 			int daysRented = 0;
 
 			if (each.getStatus() == 1) { // returned Video
@@ -66,29 +51,28 @@ public class Customer {
 
 			eachPoint++;
 
-			if ((each.getVideo().getPriceCode() == Video.NEW_RELEASE) )
+			if ((each.getVideo().getPriceCode() == Video.NEW_RELEASE))
 				eachPoint++;
 
-			if ( daysRented > each.getDaysRentedLimit() )
-				eachPoint -= Math.min(eachPoint, each.getVideo().getLateReturnPointPenalty()) ;
+			if (daysRented > each.getDaysRentedLimit())
+				eachPoint -= Math.min(eachPoint, each.getVideo().getLateReturnPointPenalty());
 
 			result += "\t" + each.getVideo().getTitle() + "\tDays rented: " + daysRented + "\tCharge: " + eachCharge
 					+ "\tPoint: " + eachPoint + "\n";
 
 			totalCharge += eachCharge;
 
-			totalPoint += eachPoint ;
+			totalPoint += eachPoint;
 		}
 
 		result += "Total charge: " + totalCharge + "\tTotal Point:" + totalPoint + "\n";
 
-
-		if ( totalPoint >= 10 ) {
+		if (totalPoint >= 10) {
 			System.out.println("Congrat! You earned one free coupon");
 		}
-		if ( totalPoint >= 30 ) {
+		if (totalPoint >= 30) {
 			System.out.println("Congrat! You earned two free coupon");
 		}
-		return result ;
+		return result;
 	}
 }

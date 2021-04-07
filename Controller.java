@@ -6,47 +6,51 @@ public class Controller {
     private List<Customer> customers = new ArrayList<Customer>();
     private List<Video> videos = new ArrayList<Video>();
 
+    private RentalService rentalService = new RentalService();
+
     public Controller() {
 
     }
 
-    public void clearRentals(String customerName) {
+    public Customer findCustomer(String customerName) {
         Customer foundCustomer = null;
+
         for (Customer customer : customers) {
             if (customer.getName().equals(customerName)) {
                 foundCustomer = customer;
                 break;
             }
         }
+
+        return foundCustomer;
+    }
+
+    public void clearRentals(String customerName) {
+        Customer foundCustomer = findCustomer(customerName);
 
         if (foundCustomer == null) {
             System.out.println("No customer found");
         } else {
-            System.out.println("Name: " + foundCustomer.getName() + "\tRentals: " + foundCustomer.getRentals().size());
-            for (Rental rental : foundCustomer.getRentals()) {
+            List<Rental> rentals = rentalService.getRentals(foundCustomer);
+            System.out.println("Name: " + foundCustomer.getName() + "\tRentals: " + rentals.size());
+            for (Rental rental : rentals) {
                 System.out.print("\tTitle: " + rental.getVideo().getTitle() + " ");
                 System.out.print("\tPrice Code: " + rental.getVideo().getPriceCode());
             }
 
-            List<Rental> rentals = new ArrayList<Rental>();
-            foundCustomer.setRentals(rentals);
+            rentalService.clearRentals(foundCustomer);
         }
     }
 
     public void returnVideo(String customerName, String videoTitle) {
-        Customer foundCustomer = null;
-        for (Customer customer : customers) {
-            if (customer.getName().equals(customerName)) {
-                foundCustomer = customer;
-                break;
-            }
-        }
+        Customer foundCustomer = findCustomer(customerName);
+
         if (foundCustomer == null)
             return;
 
         System.out.println("Enter video title to return: ");
 
-        List<Rental> customerRentals = foundCustomer.getRentals();
+        List<Rental> customerRentals = rentalService.getRentals(foundCustomer);
         for (Rental rental : customerRentals) {
             if (rental.getVideo().getTitle().equals(videoTitle) && rental.getVideo().isRented()) {
                 rental.returnVideo();
@@ -56,7 +60,7 @@ public class Controller {
         }
     }
 
-    private void init() {
+    public void init() {
         Customer james = new Customer("James");
         Customer brown = new Customer("Brown");
         customers.add(james);
@@ -70,8 +74,8 @@ public class Controller {
         Rental r1 = new Rental(v1);
         Rental r2 = new Rental(v2);
 
-        james.addRental(r1);
-        james.addRental(r2);
+        rentalService.addRental(james, r1);
+        rentalService.addRental(james, r2);
     }
 
     public void listVideos() {
@@ -82,8 +86,9 @@ public class Controller {
 
     public void listCustomers() {
         for (Customer customer : customers) {
-            System.out.println("Name: " + customer.getName() + "\tRentals: " + customer.getRentals().size());
-            for (Rental rental : customer.getRentals()) {
+            List<Rental> rentals = rentalService.getRentals(customer);
+            System.out.println("Name: " + customer.getName() + "\tRentals: " + rentals.size());
+            for (Rental rental : rentals) {
                 System.out.print("\tTitle: " + rental.getVideo().getTitle() + " ");
                 System.out.print("\tPrice Code: " + rental.getVideo().getPriceCode());
             }
@@ -91,14 +96,7 @@ public class Controller {
     }
 
     public void getCustomerReport(String customerName) {
-
-        Customer foundCustomer = null;
-        for (Customer customer : customers) {
-            if (customer.getName().equals(customerName)) {
-                foundCustomer = customer;
-                break;
-            }
-        }
+        Customer foundCustomer = findCustomer(customerName);
 
         if (foundCustomer == null) {
             System.out.println("No customer found"); // FIXME: change to exceiption
@@ -111,13 +109,7 @@ public class Controller {
     public void rentVideo(String customerName, String videoTitle) {
         System.out.println("Enter customer name: ");
 
-        Customer foundCustomer = null;
-        for (Customer customer : customers) {
-            if (customer.getName().equals(customerName)) {
-                foundCustomer = customer;
-                break;
-            }
-        }
+        Customer foundCustomer = findCustomer(customerName);
 
         if (foundCustomer == null)
             return;
@@ -138,9 +130,9 @@ public class Controller {
         Rental rental = new Rental(foundVideo);
         foundVideo.setRented(true);
 
-        List<Rental> customerRentals = foundCustomer.getRentals();
+        List<Rental> customerRentals = rentalService.getRentals(foundCustomer);
         customerRentals.add(rental);
-        foundCustomer.setRentals(customerRentals);
+        rentalService.setRentals(foundCustomer, customerRentals);
     }
 
     public void registerVideo(String title, int videoType, int priceCode) {
