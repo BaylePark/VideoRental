@@ -8,4 +8,8 @@ public class DVDVideo extends Video {
     public int getLateReturnPointPenalty() {
         return 3;
     }
+
+    public int getlimit() {
+        return 2;
+    }
 }

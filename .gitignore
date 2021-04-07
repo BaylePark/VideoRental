@@ -6,3 +6,6 @@
 /Video.class
 /RentalService.class
 /ReportService.class
+/CDVideo.class
+/DVDVideo.class
+/VHSVideo.class

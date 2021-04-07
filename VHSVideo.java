@@ -8,4 +8,8 @@ public class VHSVideo extends Video {
     public int getLateReturnPointPenalty() {
         return 1;
     }
+
+    public int getlimit() {
+        return 5;
+    }
 }

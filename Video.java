@@ -19,6 +19,8 @@ public abstract class Video {
 
 	public abstract int getLateReturnPointPenalty();
 
+	public abstract int getlimit();
+
 	public int getPriceCode() {
 		return priceCode;
 	}
