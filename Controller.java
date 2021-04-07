@@ -67,8 +67,8 @@ public class Controller {
         customers.add(james);
         customers.add(brown);
 
-        Video v1 = new CDVideo("v1", Video.REGULAR, new Date());
-        Video v2 = new DVDVideo("v2", Video.NEW_RELEASE, new Date());
+        Video v1 = new CDVideo("v1", new RegularPriceCode(new NoPointPolicy()), new Date());
+        Video v2 = new DVDVideo("v2", new NewReleasePriceCode(new OnePointPolicy()), new Date());
         videos.add(v1);
         videos.add(v2);
 
@@ -100,7 +100,7 @@ public class Controller {
         Customer foundCustomer = findCustomer(customerName);
 
         if (foundCustomer == null) {
-            System.out.println("No customer found"); // FIXME: change to exceiption
+            System.out.println("No customer found");
         } else {
             String result = report.getReport(foundCustomer, rentalService.getRentals(foundCustomer));
             System.out.println(result);
@@ -141,18 +141,31 @@ public class Controller {
         final int CD = 2;
         final int DVD = 3;
 
+        final int REGULAR = 1;
+        final int NEW_RELEASE = 2;
         Date registeredDate = new Date();
         Video video = null;
+        PriceCode code = null;
+        PointPolicy pp = null;
+
+        switch (priceCode) {
+        case REGULAR:
+            code = new RegularPriceCode(new NoPointPolicy());
+            break;
+        case NEW_RELEASE:
+            code = new NewReleasePriceCode(new OnePointPolicy());
+            break;
+        }
 
         switch (videoType) {
         case VHS:
-            video = new VHSVideo(title, priceCode, registeredDate);
+            video = new VHSVideo(title, code, registeredDate);
             break;
         case CD:
-            video = new CDVideo(title, priceCode, registeredDate);
+            video = new CDVideo(title, code, registeredDate);
             break;
         case DVD:
-            video = new DVDVideo(title, priceCode, registeredDate);
+            video = new DVDVideo(title, code, registeredDate);
             break;
         }
 

@@ -2,15 +2,12 @@ import java.util.Date;
 
 public abstract class Video {
 	private String title;
-
-	private int priceCode;
-	public static final int REGULAR = 1;
-	public static final int NEW_RELEASE = 2;
+	private PriceCode priceCode;
 
 	private Date registeredDate;
 	private boolean rented;
 
-	public Video(String title, int priceCode, Date registeredDate) {
+	public Video(String title, PriceCode priceCode, Date registeredDate) {
 		this.setTitle(title);
 
 		this.setPriceCode(priceCode);
@@ -21,11 +18,11 @@ public abstract class Video {
 
 	public abstract int getlimit();
 
-	public int getPriceCode() {
+	public PriceCode getPriceCode() {
 		return priceCode;
 	}
 
-	public void setPriceCode(int priceCode) {
+	public void setPriceCode(PriceCode priceCode) {
 		this.priceCode = priceCode;
 	}
 
