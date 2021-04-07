@@ -146,6 +146,7 @@ public class Controller {
         Date registeredDate = new Date();
         Video video = null;
         PriceCode code = null;
+        PointPolicy pp = null;
 
         switch (priceCode) {
         case REGULAR:
